@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class PlayerController : MonoBehaviour
 {
@@ -28,16 +27,10 @@ public class PlayerController : MonoBehaviour
         return hitLayer != blockingLayer && hitLayer != playerBlockingLayer;
     }
 
-    void Start()
-    {
-
-    }
-
-
     void FixedUpdate()
     {
-        int horizontal = (int) Input.GetAxis("Horizontal");
-        int vertical = (int) Input.GetAxis("Vertical");
+        int horizontal = (int) Input.GetAxisRaw("Horizontal");
+        int vertical = (int) Input.GetAxisRaw("Vertical");
         
         if (horizontal != 0)
             vertical = 0;
