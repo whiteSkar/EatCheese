@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 
 // refactor with PlayerController
-public class CatController : MonoBehaviour
+public class RandomMovement : MonoBehaviour
 {
     public float moveSpeed = 10f;
     
