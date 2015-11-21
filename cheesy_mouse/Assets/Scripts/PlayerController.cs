@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
     {
         Vector2 pos = transform.position;
         RaycastHit2D hit = Physics2D.Linecast(pos + dir, pos);
-        return hit.collider == GetComponent<Collider2D>();
+        return hit.collider.gameObject.layer != LayerMask.NameToLayer("Blocking");
     }
 
     void Start()
