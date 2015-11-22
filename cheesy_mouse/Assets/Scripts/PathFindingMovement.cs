@@ -97,6 +97,7 @@ public class PathFindingMovement : MonoBehaviour
                         if (newCost < adjacentNode.cost)
                         {
                             adjacentNode.cost = newCost;
+                            adjacentNode.parentNodePos = pos;
                         }
                     }
                 }
