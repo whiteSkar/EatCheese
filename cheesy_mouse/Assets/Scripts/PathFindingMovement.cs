@@ -12,19 +12,21 @@ public class PathFindingMovement : MonoBehaviour
     
     private static readonly List<Vector2> DIRS = new List<Vector2>() {new Vector2(1, 0), new Vector2(-1, 0), new Vector2(0, 1), new Vector2(0, -1)};
     // static possibly
-    private IDictionary<Vector2, int> validNodes = new Dictionary<Vector2, int>();  // int is for heuristic value
+    private IDictionary<Vector2, AStarNode> validNodes = new Dictionary<Vector2, AStarNode>();
     private Vector2 dest;
     
     [System.Serializable]
-    private class AStarScore
+    private class AStarNode
     {
         public int cost;
         public int h;
+        public Vector2 parentNodePos;
         
-        public AStarScore(int cost, int h)
+        public AStarNode(int cost, int h, Vector2 parentNodePos)
         {
             this.cost = cost;
             this.h = h;
+            this.parentNodePos = parentNodePos;
         }
     }
     
@@ -45,59 +47,68 @@ public class PathFindingMovement : MonoBehaviour
     void FixedUpdate()
     {
         Vector2 curPos = transform.position;
-        print(curPos);
 
         if (curPos == dest)
         {
+            // starting pos is maybe a float
+            Vector2 curPosAdjusted = new Vector2(Mathf.Round(curPos.x), Mathf.Round(curPos.y));
+            Vector2 playerPosAdjusted = new Vector2(Mathf.Round(player.position.x), Mathf.Round(player.position.y));
+             
             ComputeAstarH();
             
-            var visitedNodes = new HashSet<Vector2>();
-            var willVisitNodes = new Dictionary<Vector2, AStarScore>();
-            willVisitNodes.Add(curPos, new AStarScore(0, validNodes[new Vector2((int) curPos.x, (int) curPos.y)])); // starting pos is maybe a float
+            var visitedPoses = new HashSet<Vector2>();
+            var willVisitPoses = new HashSet<Vector2>();
+            willVisitPoses.Add(curPosAdjusted);
             
-            var path = new Stack<Vector2>();
-            while (willVisitNodes.Count != 0)
+            AStarNode playerAStarNode = null;
+            
+            // Uncomment if I want to limit how far the cat can detect the player
+            //int AStarSensitivityLevel = 20;
+            //for (int m = 0; m < AStarSensitivityLevel && willVisitPoses.Count > 0; m++)
+            while (willVisitPoses.Count > 0)
             {
-                // I want a dictionary-like data structure where I can access by the key, the position, but is sorted automatically like a heap by value, the AStarScore.
-                var node = willVisitNodes.OrderBy(n => n.Value.cost + n.Value.h).First();
-                var pos = node.Key;
-                var score = node.Value;
+                var pos = willVisitPoses.OrderBy(p => validNodes[p].cost + validNodes[p].h).First();
+                var aStarNode = validNodes[pos];
                 
-                visitedNodes.Add(curPos);
-                willVisitNodes.Remove(curPos);
-                
-                if (node.Key == (Vector2) player.position)
+                playerAStarNode = aStarNode;                
+                if (pos == playerPosAdjusted)
                     break;
                 
-                var adjacentNodesPos = GetAdjacentValidNodes(curPos);
+                visitedPoses.Add(pos);
+                willVisitPoses.Remove(pos);
+                
+                var adjacentNodesPos = GetAdjacentValidNodes(pos);
                 for (int i = 0; i < adjacentNodesPos.Count; i++)
                 {
                     var adjacentNodePos = adjacentNodesPos[i];
-                    if (visitedNodes.Contains(adjacentNodePos))
+                    if (visitedPoses.Contains(adjacentNodePos))
                         continue;
                     
-                    int newCost = score.cost + 1;
-                    if (!willVisitNodes.ContainsKey(adjacentNodePos))
+                    int newCost = aStarNode.cost + 1;
+                    if (!willVisitPoses.Contains(adjacentNodePos))
                     {
-                        willVisitNodes.Add(adjacentNodePos, new AStarScore(newCost, validNodes[adjacentNodePos]));
-                        path.Push(adjacentNodePos);
+                        validNodes[adjacentNodePos].cost = newCost;
+                        validNodes[adjacentNodePos].parentNodePos = pos;
+                        willVisitPoses.Add(adjacentNodePos);
                     }
                     else
                     {
-                        var adjacentNode = willVisitNodes[adjacentNodePos];
+                        var adjacentNode = validNodes[adjacentNodePos];
                         if (newCost < adjacentNode.cost)
                         {
                             adjacentNode.cost = newCost;
-                            path.Push(adjacentNodePos);
                         }
                     }
                 }
-                
-                if (path.Count > 0)
-                    path.Pop();
             }
             
-            dest = path.FirstOrDefault();
+            // When the parentNodePos of currentAStarNode is curPosAdjusted, 
+            //  the currentAStarNode is the first node in the shortest path
+            while (playerAStarNode != null && playerAStarNode.parentNodePos != curPosAdjusted)
+            {
+                dest = playerAStarNode.parentNodePos;
+                playerAStarNode = validNodes[dest];
+            }
         }
 
         Move(dest - curPos);
@@ -110,7 +121,9 @@ public class PathFindingMovement : MonoBehaviour
         foreach (var nodePos in validNodes.Keys.ToList())    // check if this works without ToList
         {
             var deltaDist = targetPos - nodePos;
-            validNodes[nodePos] = (int) Mathf.Abs(deltaDist.x) + (int) Mathf.Abs(deltaDist.y);
+            validNodes[nodePos].cost = 0;
+            validNodes[nodePos].h = (int) Mathf.Abs(deltaDist.x) + (int) Mathf.Abs(deltaDist.y);
+            validNodes[nodePos].parentNodePos = Vector2.zero;
         }
     }
     
@@ -161,7 +174,7 @@ public class PathFindingMovement : MonoBehaviour
                 }
 
                 if (!isOnBlock)
-                    validNodes.Add(new Vector2(j, i), 0);
+                    validNodes.Add(new Vector2(j, i), new AStarNode(0, 0, Vector2.zero));
             }
         }
         
