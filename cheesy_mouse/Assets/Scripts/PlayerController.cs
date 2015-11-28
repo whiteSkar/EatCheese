@@ -3,6 +3,8 @@
 public class PlayerController : MonoBehaviour
 {
     public float moveSpeed = 10f;
+    
+    private GameManager gameManager;
 
     void Move(Vector2 dir)
     {
@@ -26,9 +28,25 @@ public class PlayerController : MonoBehaviour
         var playerBlockingLayer = LayerMask.NameToLayer("PlayerBlocking");
         return hitLayer != blockingLayer && hitLayer != playerBlockingLayer;
     }
-
+    
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        if (col.gameObject.CompareTag("Cat"))
+        {
+            gameObject.SetActive(false);
+            gameManager.state = GameManager.GameState.Lost;
+        }
+    }
+    
+    void Start()
+    {
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+    }
+    
     void FixedUpdate()
     {
+        if (gameManager.state != GameManager.GameState.Playing) return;
+        
         int horizontal = (int) Input.GetAxisRaw("Horizontal");
         int vertical = (int) Input.GetAxisRaw("Vertical");
         

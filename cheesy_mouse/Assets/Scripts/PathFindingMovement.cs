@@ -14,6 +14,7 @@ public class PathFindingMovement : MonoBehaviour
     // static possibly
     private IDictionary<Vector2, AStarNode> validNodes = new Dictionary<Vector2, AStarNode>();
     private Vector2 dest;
+    private GameManager gameManager;
     
     [System.Serializable]
     private class AStarNode
@@ -46,6 +47,8 @@ public class PathFindingMovement : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (gameManager.state != GameManager.GameState.Playing) return;
+
         Vector2 curPos = transform.position;
 
         if (curPos == dest)
@@ -155,6 +158,8 @@ public class PathFindingMovement : MonoBehaviour
     // Refactor with CheeseManager code.
     void Start()
     {
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        
         var mapBlocks = map.GetComponents<BoxCollider2D>();
         
         // 2, 31, 28 are all hacky way for getting map size and offset.

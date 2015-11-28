@@ -10,6 +10,7 @@ public class RandomMovement : MonoBehaviour
     private static readonly List<Vector2> DIRS = new List<Vector2>() {new Vector2(1, 0), new Vector2(-1, 0), new Vector2(0, 1), new Vector2(0, -1)};
     private List<Vector2> dirs;
     private Vector2 dest;
+    private GameManager gameManager;
     
     void Move(Vector2 dir)
     {
@@ -32,6 +33,8 @@ public class RandomMovement : MonoBehaviour
 
     void Start()
     {
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        
         dest = transform.position;
         
         dirs = new List<Vector2>();
@@ -48,6 +51,8 @@ public class RandomMovement : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (gameManager.state != GameManager.GameState.Playing) return;
+        
         Vector2 curPos = transform.position;
         if (curPos == dest)
         {
