@@ -5,6 +5,7 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed = 10f;
     
     private GameManager gameManager;
+    private AudioSource audioSrc;
 
     void Move(Vector2 dir)
     {
@@ -33,7 +34,10 @@ public class PlayerController : MonoBehaviour
     {
         if (col.gameObject.CompareTag("Cat"))
         {
-            gameObject.SetActive(false);
+            audioSrc.Play();
+            transform.position = new Vector3(-10, -10, -10);
+            Destroy(gameObject, 1.0f);
+                        
             gameManager.state = GameManager.GameState.Lost;
         }
     }
@@ -41,6 +45,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        audioSrc = GetComponent<AudioSource>();
     }
     
     void FixedUpdate()

@@ -2,7 +2,9 @@
 
 public class CheeseController : MonoBehaviour
 {
-    private CheeseManager cheeseManager;
+    public AudioClip eatSound;
+
+    private CheeseManager cheeseManager;    
     
     void Start()
     {
@@ -13,6 +15,8 @@ public class CheeseController : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            //audioManager.PlaySound(eatSound);
+            
             gameObject.SetActive(false);
             cheeseManager.cheeseIsEaten();
         }
