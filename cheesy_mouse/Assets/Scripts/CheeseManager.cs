@@ -5,6 +5,8 @@ public class CheeseManager : MonoBehaviour
     public GameObject cheese;
     public GameObject map;
     public CircleCollider2D player;
+    public float minPitch;
+    public float maxPitch;
     
     private int cheeseCount = 0;
     private GameManager gameManager;
@@ -13,6 +15,7 @@ public class CheeseManager : MonoBehaviour
     
     public void cheeseIsEaten()
     {
+        audioSrc.pitch = Random.Range(minPitch, maxPitch);
         audioSrc.Play();
         
         cheeseCount--;
