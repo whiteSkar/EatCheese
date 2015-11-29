@@ -2,8 +2,6 @@
 
 public class CheeseController : MonoBehaviour
 {
-    public AudioClip eatSound;
-
     private CheeseManager cheeseManager;    
     
     void Start()
@@ -14,9 +12,7 @@ public class CheeseController : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
-        {
-            //audioManager.PlaySound(eatSound);
-            
+        {            
             gameObject.SetActive(false);
             cheeseManager.cheeseIsEaten();
         }

@@ -8,12 +8,14 @@ public class CheeseManager : MonoBehaviour
     
     private int cheeseCount = 0;
     private GameManager gameManager;
+    private AudioSource audioSrc;
     
     
     public void cheeseIsEaten()
     {
+        audioSrc.Play();
+        
         cheeseCount--;
-        print (cheeseCount);
         if (cheeseCount <= 0)
         {
             gameManager.state = GameManager.GameState.Won;
@@ -24,6 +26,7 @@ public class CheeseManager : MonoBehaviour
     void Start()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        audioSrc = GetComponent<AudioSource>();
         
         var mapBlocks = map.GetComponents<BoxCollider2D>();
         
