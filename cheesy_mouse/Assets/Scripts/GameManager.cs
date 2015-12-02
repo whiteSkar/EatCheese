@@ -5,21 +5,26 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public Text gameOverText;
+    public Text restartText;
+    public CatManager catManager;
+    public PlayerMovement playerMovement;
+    public CheeseManager cheeseManager;
     
     public enum GameState
     {
+        Initialize,
         Playing,
         Won,
         Lost,
         Over,
+        Restarting,
     };
     public GameState state;
     
+    
     void Start()
     {
-        gameOverText.gameObject.SetActive(false);
-        
-        state = GameState.Playing;
+        state = GameState.Initialize;
         
         StartCoroutine(FSM());
     }
@@ -30,19 +35,36 @@ public class GameManager : MonoBehaviour
         {
             switch (state)
             {
+                case GameState.Initialize:
+                    gameOverText.gameObject.SetActive(false);
+                    restartText.gameObject.SetActive(false);
+                    
+                    catManager.ResetCats();
+                    playerMovement.Reset();
+                    cheeseManager.Reset();
+                    
+                    state = GameState.Playing;
+                    break;
                 case GameState.Playing:
+
                     break;
                 case GameState.Won:
                     gameOverText.text = "YOU WON!";
                     gameOverText.gameObject.SetActive(true);
+                    
+                    StartCoroutine(GameOver());
                     state = GameState.Over;
                     break;
                 case GameState.Lost:
                     gameOverText.text = "YOU LOST!";
                     gameOverText.gameObject.SetActive(true);
+                    
+                    StartCoroutine(GameOver());
                     state = GameState.Over;
                     break;
                 case GameState.Over:
+                    break;
+                case GameState.Restarting:
                     break;
                 default:
                     break;
@@ -52,9 +74,20 @@ public class GameManager : MonoBehaviour
         }
     }
 
-
+    IEnumerator GameOver()
+    {
+        yield return new WaitForSeconds(0.5f);
+        restartText.gameObject.SetActive(true);
+        state = GameState.Restarting;
+        
+    }
+    
     void Update()
     {
-        
+        // change to touch input later
+        if (state == GameState.Restarting && (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0))
+        {
+            state = GameState.Initialize;
+        }
     }
 }

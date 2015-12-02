@@ -1,12 +1,13 @@
 ﻿using UnityEngine;
+using System.Collections;
 
-public class PlayerController : MonoBehaviour
+public class PlayerMovement : MovementBase
 {
     public float moveSpeed = 10f;
     
     private GameManager gameManager;
     private AudioSource audioSrc;
-
+    
     void Move(Vector2 dir)
     {
         Vector2 curP = transform.position;
@@ -35,9 +36,8 @@ public class PlayerController : MonoBehaviour
         if (col.gameObject.CompareTag("Cat"))
         {
             audioSrc.Play();
-            transform.position = new Vector3(-10, -10, -10);
-            Destroy(gameObject, 1.0f);
-                        
+            transform.position = new Vector3(-100, -100, -100);
+
             gameManager.state = GameManager.GameState.Lost;
         }
     }

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class WaypointMovement : MonoBehaviour
+public class WaypointMovement : MovementBase
 {
     public Transform[] waypoints;
     public float moveSpeed = 10f;
@@ -10,9 +10,18 @@ public class WaypointMovement : MonoBehaviour
     private int curIndex;
     private GameManager gameManager;
     
+    public override void Reset()
+    {
+        base.Reset();
+        
+        curIndex = 0;
+    }
+    
     void Start()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        
+        Reset();
     }
     
     void FixedUpdate()

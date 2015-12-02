@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 
 public class CheeseManager : MonoBehaviour
 {
@@ -8,18 +9,25 @@ public class CheeseManager : MonoBehaviour
     public float minPitch;
     public float maxPitch;
     
-    private int cheeseCount = 0;
+    private int liveCheeseCount = 0;
     private GameManager gameManager;
     private AudioSource audioSrc;
+    private IList<GameObject> cheeses;
     
+    public void Reset()
+    {
+        foreach (GameObject cheese in cheeses)
+            cheese.SetActive(true);
+        liveCheeseCount = cheeses.Count;
+    }
     
     public void cheeseIsEaten()
     {
         audioSrc.pitch = Random.Range(minPitch, maxPitch);
         audioSrc.Play();
         
-        cheeseCount--;
-        if (cheeseCount <= 0)
+        liveCheeseCount--;
+        if (liveCheeseCount <= 0)
         {
             gameManager.state = GameManager.GameState.Won;
         }
@@ -30,6 +38,7 @@ public class CheeseManager : MonoBehaviour
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         audioSrc = GetComponent<AudioSource>();
+        cheeses = new List<GameObject>();
         
         var mapBlocks = map.GetComponents<BoxCollider2D>();
         
@@ -57,11 +66,12 @@ public class CheeseManager : MonoBehaviour
 
                 if (!isOnBlock)
                 {
-                    Instantiate(cheese, new Vector3(j, i, 0f), Quaternion.identity);
-                    cheeseCount++;
+                    cheeses.Add(Instantiate(cheese, new Vector3(j, i, 0f), Quaternion.identity) as GameObject);
                 }
             }
         }
+        
+        liveCheeseCount = cheeses.Count;
     }
     
     bool IsIntersect(Collider2D collider, Vector2 point)

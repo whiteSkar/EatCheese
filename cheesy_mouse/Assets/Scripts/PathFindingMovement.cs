@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 
-public class PathFindingMovement : MonoBehaviour
+public class PathFindingMovement : MovementBase
 {
     public float moveSpeed = 10f;
     public GameObject map;
@@ -31,6 +31,12 @@ public class PathFindingMovement : MonoBehaviour
         }
     }
     
+    public override void Reset()
+    {
+        base.Reset();
+        
+        dest = transform.position;
+    }
     
     void Move(Vector2 dir)
     {
@@ -184,7 +190,7 @@ public class PathFindingMovement : MonoBehaviour
             }
         }
         
-        dest = transform.position;
+        Reset();
     }
     
     bool IsIntersect(BoxCollider2D collider, Vector2 point)

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 
 // refactor with PlayerController
-public class RandomMovement : MonoBehaviour
+public class RandomMovement : MovementBase
 {
     public float moveSpeed = 10f;
     
@@ -11,6 +11,16 @@ public class RandomMovement : MonoBehaviour
     private List<Vector2> dirs;
     private Vector2 dest;
     private GameManager gameManager;
+    
+    
+    public override void Reset()
+    {
+        base.Reset();
+        
+        dest = transform.position;
+
+        ResetDirs();
+    }
     
     void Move(Vector2 dir)
     {
@@ -34,11 +44,9 @@ public class RandomMovement : MonoBehaviour
     void Start()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-        
-        dest = transform.position;
-        
         dirs = new List<Vector2>();
-        ResetDirs();
+        
+        Reset();
     }
 
     void OnCollisionStay2D(Collision2D collisionInfo)
