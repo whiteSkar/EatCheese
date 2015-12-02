@@ -2,23 +2,9 @@
 using System.Collections;
 
 public class PlayerMovement : MovementBase
-{
-    public float moveSpeed = 10f;
-    
+{    
     private GameManager gameManager;
     private AudioSource audioSrc;
-    
-    void Move(Vector2 dir)
-    {
-        Vector2 curP = transform.position;
-        Vector2 newP = Vector2.MoveTowards(curP, curP + dir, moveSpeed * Time.deltaTime);
-        
-        GetComponent<Rigidbody2D>().MovePosition(newP);
-        
-        Animator animator = GetComponent<Animator>();
-        animator.SetFloat("DirX", dir.x);
-        animator.SetFloat("DirY", dir.y);
-    }
     
     bool CanMove(Vector2 dir)
     {

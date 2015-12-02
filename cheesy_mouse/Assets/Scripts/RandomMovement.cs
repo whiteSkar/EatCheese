@@ -1,12 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-// refactor with PlayerController
 public class RandomMovement : MovementBase
 {
-    public float moveSpeed = 10f;
-    
-    
     private static readonly List<Vector2> DIRS = new List<Vector2>() {new Vector2(1, 0), new Vector2(-1, 0), new Vector2(0, 1), new Vector2(0, -1)};
     private List<Vector2> dirs;
     private Vector2 dest;
@@ -22,25 +18,6 @@ public class RandomMovement : MovementBase
         ResetDirs();
     }
     
-    void Move(Vector2 dir)
-    {
-        Vector2 curP = transform.position;
-        Vector2 newP = Vector2.MoveTowards(curP, curP + dir, moveSpeed * Time.deltaTime);
-        
-        GetComponent<Rigidbody2D>().MovePosition(newP);
-        
-        Animator animator = GetComponent<Animator>();
-        animator.SetFloat("DirX", dir.x);
-        animator.SetFloat("DirY", dir.y);
-    }
-    
-    bool CanMove(Vector2 dir)
-    {
-        Vector2 pos = transform.position;
-        RaycastHit2D hit = Physics2D.Linecast(pos + dir, pos);
-        return hit.collider.gameObject.layer != LayerMask.NameToLayer("Blocking");
-    }
-
     void Start()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();

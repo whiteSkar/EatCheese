@@ -5,7 +5,6 @@ using System.Linq;
 
 public class PathFindingMovement : MovementBase
 {
-    public float moveSpeed = 10f;
     public GameObject map;
     public Transform player;
     
@@ -37,19 +36,6 @@ public class PathFindingMovement : MovementBase
         
         dest = transform.position;
     }
-    
-    void Move(Vector2 dir)
-    {
-        Vector2 curP = transform.position;
-        Vector2 newP = Vector2.MoveTowards(curP, curP + dir, moveSpeed * Time.deltaTime);
-        
-        GetComponent<Rigidbody2D>().MovePosition(newP);
-        
-        Animator animator = GetComponent<Animator>();
-        animator.SetFloat("DirX", dir.x);
-        animator.SetFloat("DirY", dir.y);
-    }
-
 
     void FixedUpdate()
     {
@@ -128,7 +114,7 @@ public class PathFindingMovement : MovementBase
     {
         Vector2 targetPos = player.position;
         
-        foreach (var nodePos in validNodes.Keys.ToList())    // check if this works without ToList
+        foreach (var nodePos in validNodes.Keys)
         {
             var deltaDist = targetPos - nodePos;
             validNodes[nodePos].cost = 0;
