@@ -66,7 +66,9 @@ public class CheeseManager : MonoBehaviour
 
                 if (!isOnBlock)
                 {
-                    cheeses.Add(Instantiate(cheese, new Vector3(j, i, 0f), Quaternion.identity) as GameObject);
+                    var cheeseObject = Instantiate(cheese, new Vector3(j, i, 0f), Quaternion.identity) as GameObject;
+                    cheeseObject.transform.parent = transform;
+                    cheeses.Add(cheeseObject);
                 }
             }
         }

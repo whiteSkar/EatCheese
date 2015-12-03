@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public CatManager catManager;
     public PlayerMovement playerMovement;
     public CheeseManager cheeseManager;
+    public CameraAspectController cameraAspectController;
     
     public enum GameState
     {
