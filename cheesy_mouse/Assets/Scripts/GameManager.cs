@@ -85,10 +85,14 @@ public class GameManager : MonoBehaviour
     
     void Update()
     {
-        // change to touch input later
-        if (state == GameState.Restarting && (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0))
-        {
-            state = GameState.Initialize;
-        }
+        #if UNITY_ANDROID
+            if (state == GameState.Restarting && Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+                state = GameState.Initialize;
+        #endif
+        
+        #if UNITY_EDITOR_WIN
+            if (state == GameState.Restarting && (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0))
+                state = GameState.Initialize;
+        #endif
     }
 }
