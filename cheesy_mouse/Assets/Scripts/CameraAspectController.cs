@@ -7,7 +7,15 @@ public class CameraAspectController : MonoBehaviour
     public float targetAspectHeight;
     public float gameUnitOffsetFromTop;
     
-    void Start()
+    private float cameraOffset;
+    
+    
+    public float getCameraOffset()
+    {
+        return cameraOffset;
+    }
+    
+    void Awake()
     {
         float targetaspect = targetAspectWidth / targetAspectHeight;
 
@@ -31,7 +39,8 @@ public class CameraAspectController : MonoBehaviour
         var screenHeightInScreen = Screen.height / screenHeightRatioInScreen;
         
         var camPos = camera.transform.position;
-        camera.transform.position = new Vector3(camPos.x, (camPos.y - screenHeightInScreen * ((1 - mapHeightInScreen) / 2.0f)) + gameUnitOffsetFromTop, camPos.z);
+        cameraOffset = screenHeightInScreen * ((1 - mapHeightInScreen) / 2.0f) - gameUnitOffsetFromTop;
+        camera.transform.position = new Vector3(camPos.x, camPos.y - cameraOffset, camPos.z);
 
 /*
         if (scaleheight < 1.0f) // if scaled height is less than current height, add letterbox

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using CnControls;
 
 public class PlayerMovement : MovementBase
 {    
@@ -37,9 +38,9 @@ public class PlayerMovement : MovementBase
     void FixedUpdate()
     {
         if (gameManager.state != GameManager.GameState.Playing) return;
-        
-        int horizontal = (int) Input.GetAxisRaw("Horizontal");
-        int vertical = (int) Input.GetAxisRaw("Vertical");
+
+        int horizontal = (int) CnInputManager.GetAxisRaw("Horizontal");
+        int vertical = (int) CnInputManager.GetAxisRaw("Vertical");
         
         if (horizontal != 0)
             vertical = 0;
