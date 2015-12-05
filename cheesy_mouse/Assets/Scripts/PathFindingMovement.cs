@@ -152,7 +152,8 @@ public class PathFindingMovement : MovementBase
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         
-        var mapBlocks = map.GetComponents<BoxCollider2D>();
+        // One non active box collider is used for the cat house so cheeseManager don't put cheese inside
+        var mapBlocks = map.GetComponents<BoxCollider2D>().Where(b => b.isActiveAndEnabled).ToList();
         
         // 2, 31, 28 are all hacky way for getting map size and offset.
         int mapOffset = 2;
@@ -161,7 +162,7 @@ public class PathFindingMovement : MovementBase
             for (int j = (int) map.transform.position.y + mapOffset; j < 28; j++)
             {
                 bool isOnBlock = false;
-                for (int k = 0; k < mapBlocks.Length; k++)
+                for (int k = 0; k < mapBlocks.Count; k++)
                 {
                     var point = new Vector2(j, i);
                     if (IsIntersect(mapBlocks[k], point))
