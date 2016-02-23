@@ -1,21 +1,21 @@
 fileFormatVersion: 2
-guid: ed2d4dbf684f34e1496240e017bcb52b
-timeCreated: 1448078511
+guid: 5133f5a0a07132a418d3f2968d5f28bc
+timeCreated: 1456208220
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: pacman_spritesheet_0
-    21300002: pacman_spritesheet_1
-    21300004: pacman_spritesheet_2
-    21300006: pacman_spritesheet_3
-    21300008: pacman_spritesheet_4
-    21300010: pacman_spritesheet_5
-    21300012: pacman_spritesheet_6
-    21300014: pacman_spritesheet_7
-    21300016: pacman_spritesheet_8
-    21300018: pacman_spritesheet_9
-    21300020: pacman_spritesheet_10
-    21300022: pacman_spritesheet_11
+    21300000: cheese_mouse_0
+    21300002: cheese_mouse_1
+    21300004: cheese_mouse_2
+    21300006: cheese_mouse_3
+    21300008: cheese_mouse_4
+    21300010: cheese_mouse_5
+    21300012: cheese_mouse_6
+    21300014: cheese_mouse_7
+    21300016: cheese_mouse_8
+    21300018: cheese_mouse_9
+    21300020: cheese_mouse_10
+    21300022: cheese_mouse_11
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -29,13 +29,13 @@ TextureImporter:
   bumpmap:
     convertToNormalMap: 0
     externalNormalMap: 0
-    heightScale: .25
+    heightScale: 0.25
     normalMapFilter: 0
   isReadable: 0
   grayScaleToAlpha: 0
   generateCubemap: 0
   cubemapConvolution: 0
-  cubemapConvolutionSteps: 8
+  cubemapConvolutionSteps: 7
   cubemapConvolutionExponent: 1.5
   seamlessCubemap: 0
   textureFormat: -1
@@ -54,7 +54,7 @@ TextureImporter:
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
-  spritePivot: {x: .5, y: .5}
+  spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 8
   alphaIsTransparency: 1
@@ -62,7 +62,7 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: pacman_spritesheet_0
+    - name: cheese_mouse_0
       rect:
         serializedVersion: 2
         x: 0
@@ -72,7 +72,8 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: pacman_spritesheet_1
+      outline: []
+    - name: cheese_mouse_1
       rect:
         serializedVersion: 2
         x: 16
@@ -82,7 +83,8 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: pacman_spritesheet_2
+      outline: []
+    - name: cheese_mouse_2
       rect:
         serializedVersion: 2
         x: 32
@@ -92,7 +94,8 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: pacman_spritesheet_3
+      outline: []
+    - name: cheese_mouse_3
       rect:
         serializedVersion: 2
         x: 0
@@ -102,7 +105,8 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: pacman_spritesheet_4
+      outline: []
+    - name: cheese_mouse_4
       rect:
         serializedVersion: 2
         x: 16
@@ -112,7 +116,8 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: pacman_spritesheet_5
+      outline: []
+    - name: cheese_mouse_5
       rect:
         serializedVersion: 2
         x: 32
@@ -122,7 +127,8 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: pacman_spritesheet_6
+      outline: []
+    - name: cheese_mouse_6
       rect:
         serializedVersion: 2
         x: 0
@@ -132,7 +138,8 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: pacman_spritesheet_7
+      outline: []
+    - name: cheese_mouse_7
       rect:
         serializedVersion: 2
         x: 16
@@ -142,7 +149,8 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: pacman_spritesheet_8
+      outline: []
+    - name: cheese_mouse_8
       rect:
         serializedVersion: 2
         x: 32
@@ -152,7 +160,8 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: pacman_spritesheet_9
+      outline: []
+    - name: cheese_mouse_9
       rect:
         serializedVersion: 2
         x: 0
@@ -162,7 +171,8 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: pacman_spritesheet_10
+      outline: []
+    - name: cheese_mouse_10
       rect:
         serializedVersion: 2
         x: 16
@@ -172,7 +182,8 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: pacman_spritesheet_11
+      outline: []
+    - name: cheese_mouse_11
       rect:
         serializedVersion: 2
         x: 32
@@ -182,6 +193,8 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    outline: []
   spritePackingTag: 
   userData: 
   assetBundleName: 
