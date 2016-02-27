@@ -32,7 +32,13 @@ namespace CnControls
                     _linkedDpad.OnPointerDown(PointerEventDataCache);
                     return;
                 }
-                if (touch.phase == TouchPhase.Ended)
+                if (touch.phase == TouchPhase.Moved || touch.phase == TouchPhase.Stationary)
+                {
+                    _linkedDpad.OnPointerUp(PointerEventDataCache);
+                    _linkedDpad.OnPointerDown(PointerEventDataCache);
+                    return;
+                }
+                if (touch.phase == TouchPhase.Ended || touch.phase == TouchPhase.Canceled)
                 {
                     _linkedDpad.OnPointerUp(PointerEventDataCache);
                     return;
@@ -48,6 +54,12 @@ namespace CnControls
             {
                 _linkedDpad.OnPointerDown(PointerEventDataCache);
                 return;                
+            }
+            if (Input.GetMouseButton(0))
+            {
+                _linkedDpad.OnPointerUp(PointerEventDataCache);
+                _linkedDpad.OnPointerDown(PointerEventDataCache);
+                return;
             }
             if (Input.GetMouseButtonUp(0))
             {

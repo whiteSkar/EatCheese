@@ -17,9 +17,9 @@ namespace CnControls
 
         private void Awake()
         {
-#if UNITY_EDITOR
+//#if UNITY_EDITOR
             gameObject.AddComponent<DpadInputHelper>();
-#endif
+//#endif
         }
 
         public void OnPointerDown(PointerEventData eventData)
