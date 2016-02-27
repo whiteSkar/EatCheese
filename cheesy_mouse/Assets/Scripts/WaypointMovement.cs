@@ -27,7 +27,10 @@ public class WaypointMovement : MovementBase
         if (gameManager.state != GameManager.GameState.Playing) return;
         
         if (transform.position == waypoints[curIndex].position)
-            curIndex = (curIndex + 1) % waypoints.Length;
+        {
+            int newIndex = (curIndex + 1) % waypoints.Length;
+            curIndex = newIndex == 0 ? 1 : newIndex;    // to not use the first waypoint which is inside the starting box
+        }
             
         Vector2 dir = waypoints[curIndex].position - transform.position;
         Move(dir);
