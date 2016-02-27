@@ -1,17 +1,17 @@
 fileFormatVersion: 2
-guid: 37b8c4516587f4e4ca252a35c6b9e17d
-timeCreated: 1448086020
+guid: 1c2e2f13d5780e346bd84958dc2e5ac8
+timeCreated: 1456553080
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: cat_0
-    21300002: cat_1
-    21300004: cat_2
-    21300006: cat_3
-    21300008: cat_4
-    21300010: cat_5
-    21300012: cat_6
-    21300014: cat_7
+    21300000: cat_blue_0
+    21300002: cat_blue_1
+    21300004: cat_blue_2
+    21300006: cat_blue_3
+    21300008: cat_blue_4
+    21300010: cat_blue_5
+    21300012: cat_blue_6
+    21300014: cat_blue_7
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -31,7 +31,7 @@ TextureImporter:
   grayScaleToAlpha: 0
   generateCubemap: 0
   cubemapConvolution: 0
-  cubemapConvolutionSteps: 8
+  cubemapConvolutionSteps: 7
   cubemapConvolutionExponent: 1.5
   seamlessCubemap: 0
   textureFormat: -1
@@ -58,7 +58,7 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: cat_0
+    - name: cat_blue_0
       rect:
         serializedVersion: 2
         x: 0
@@ -69,7 +69,7 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: cat_1
+    - name: cat_blue_1
       rect:
         serializedVersion: 2
         x: 16
@@ -80,7 +80,7 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: cat_2
+    - name: cat_blue_2
       rect:
         serializedVersion: 2
         x: 0
@@ -91,7 +91,7 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: cat_3
+    - name: cat_blue_3
       rect:
         serializedVersion: 2
         x: 16
@@ -102,7 +102,7 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: cat_4
+    - name: cat_blue_4
       rect:
         serializedVersion: 2
         x: 0
@@ -113,7 +113,7 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: cat_5
+    - name: cat_blue_5
       rect:
         serializedVersion: 2
         x: 16
@@ -124,7 +124,7 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: cat_6
+    - name: cat_blue_6
       rect:
         serializedVersion: 2
         x: 0
@@ -135,7 +135,7 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: cat_7
+    - name: cat_blue_7
       rect:
         serializedVersion: 2
         x: 16
